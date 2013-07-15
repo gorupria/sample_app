@@ -10,9 +10,15 @@ gem 'heroku'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-group :development, :test do
+group :development do
   gem 'sqlite3'
   gem 'rspec-rails', '2.11.0'
+end
+
+group :test do
+  gem 'sqlite3'
+  gem 'rspec-rails', '2.11.0'
+  gem 'webrat'
 end
 
 #thin server and postgres DB on production
