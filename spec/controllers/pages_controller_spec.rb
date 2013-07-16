@@ -3,6 +3,10 @@ require 'spec_helper'
 describe PagesController do
 #because we deleted view files it will render it so we have to render it manually
   render_views
+  
+  before(:each) do
+    @base_title = "Ruby on Rails Tutorial Sample App"
+  end
 
   describe "GET 'home'" do
     it "returns http success" do
@@ -14,7 +18,7 @@ describe PagesController do
       get 'home'
       #have_selector method requires webrat server
       response.should have_selector("title", 
-                                    :content => "Ruby on Rails Tutorial Sample App | Home")
+                                    :content => "#{@base_title} | Home")
     end
     
     it "should have a non-blank body" do
@@ -33,7 +37,7 @@ describe PagesController do
       get 'contact'
       #have_selector method requires webrat server
       response.should have_selector("title", 
-                                    :content => "Ruby on Rails Tutorial Sample App | Contact")
+                                    :content => "#{@base_title} | Contact")
     end
   end
   

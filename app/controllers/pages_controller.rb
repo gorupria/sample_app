@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  
+  #learn inject in ruby
   def home
     @title = "Home"
   end
