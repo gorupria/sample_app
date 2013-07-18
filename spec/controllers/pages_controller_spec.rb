@@ -51,7 +51,21 @@ describe PagesController do
       get 'about'
       #have_selector method requires webrat server
       response.should have_selector("title", 
-                                    :content => "Ruby on Rails Tutorial Sample App | About")
+                                    :content => "#{@base_title} | About")
+    end
+  end
+  
+  describe "GET 'help'" do
+    it "returns http success" do
+      get 'help'
+      response.should be_success
+    end
+    
+    it "should have right title" do
+      get 'help'
+      #have_selector method requires webrat server
+      response.should have_selector("title", 
+                                    :content => "#{@base_title} | Help")
     end
   end
 
