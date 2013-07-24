@@ -1,1 +1,6 @@
-<%= @user.name %>, <%= @user.email %>
+<h1>
+<!-- raw is used to run script as html which invites cross-site scripting attacks -->
+<!--<%= raw(@user.name + "<script>")%>-->
+	<%= gravatar_for(@user) %>
+	<%= @user.name %>
+</h1>

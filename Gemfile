@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.9'
 
+#gravatar gem for profile image
+gem 'gravatar_image_tag', '0.1.0'
+
 #heroku gem
 gem 'heroku'
 
