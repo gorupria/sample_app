@@ -42,12 +42,7 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector('td>a', :content => user_path(@user),
                                             :href    => user_path(@user))
-    end
-    
-    
-    
-    
-    
+    end    
   end
   
   describe "GET 'new'" do
@@ -59,7 +54,9 @@ describe UsersController do
     it "should have a right title " do
         get :new
         response.should have_selector('title', :content => "Sign up")
-      end
+    end
+    
+    
     
   end
 

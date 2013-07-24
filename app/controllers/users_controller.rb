@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
   
   def new
+    #is in 0802, timestamp: 5:30
+    @user = User.new
     @title = "Sign up"
   end
   
