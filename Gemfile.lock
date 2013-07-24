@@ -46,6 +46,10 @@ GEM
     excon (0.25.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (1.3.3)
+    factory_girl_rails (1.0)
+      factory_girl (~> 1.3)
+      rails (>= 3.0.0.beta4)
     heroku (2.39.4)
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
@@ -151,6 +155,7 @@ PLATFORMS
 DEPENDENCIES
   annotate (= 2.4.1.beta1)
   coffee-rails (~> 3.2.1)
+  factory_girl_rails (= 1.0)
   heroku
   jquery-rails
   pg (= 0.12.2)
