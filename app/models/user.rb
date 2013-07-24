@@ -24,5 +24,42 @@ class User < ActiveRecord::Base
   validates :password, :presence => true,
                        :confirmation => true, #this will automatically create password_confirmation attr.
                        :length => { :within => 6..40 }
+  
+  #callback are rails methods those are called in diffrent lifecycle of an application
+  before_save :encrypt_password
+  
+  def has_password?(submitted_password)
+    encrypted_password == encrypt(submitted_password)
+  end
+  
+  #is in 0703, timestamp: 20:00
+  #everything inside this block is a class level method
+  class << self
+    def authenticate(email, submitted_password)
+      user = find_by_email(email)
+      return nil if user.nil?
+      return user if user.has_password?(submitted_password)
+    end
+  end
+  
+  private
+    #is in 0702, timestamp: 30:00
+    def encrypt_password
+      self.salt = make_salt if new_record?
+      self.encrypted_password = encrypt(password) #can be written as encrypt(self.password)
+    end
+    
+    def encrypt(string)
+      secure_hash("#{salt}--#{string}")
+    end
+    
+    def make_salt
+      secure_hash("#{Time.now.utc}--#{password}")
+    end
+    
+    #is in 0703, timestamp: 09:00
+    def secure_hash(string)
+      Digest::SHA2.hexdigest(string)
+    end
 end
 
