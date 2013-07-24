@@ -1,6 +1,18 @@
-<h1>
-<!-- raw is used to run script as html which invites cross-site scripting attacks -->
-<!--<%= raw(@user.name + "<script>")%>-->
-	<%= gravatar_for(@user) %>
-	<%= @user.name %>
-</h1>
+<table border="0" cellspacing="5" cellpadding="5" class="profile" summary="Profile information">
+	<tr>
+		<td class="main">
+			<h1>
+			    <!-- raw is used to run script as html which invites cross-site scripting attacks -->
+		   	    <!--<%= raw(@user.name + "<script>")%>-->
+				<%= gravatar_for(@user) %>
+				<%= @user.name %>
+			</h1>
+		</td>
+		<td class="sidebar round">
+			<strong>Name</strong><%= @user.name %><br/>
+			<strong>URL</strong><%= link_to user_path(@user.id),
+											@user %>
+		</td>
+	</tr>
+</table>
+
