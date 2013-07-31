@@ -25,4 +25,22 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  def edit
+    #is in 1002, timestamp:5:25 
+    @user = User.find(params[:id])
+    @title = "Edit user"
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    #is in 1002, timestamp: 28:00
+    if @user.update_attributes(params[:user])
+      #it worked
+      redirect_to @user, :flash => {:success => "Profile updated."}
+    else
+    @title = "Edit user"
+    render 'edit'
+    end
+  end
 end
