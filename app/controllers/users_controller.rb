@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+  #is in 1003, timestamp: 5:00
+  before_filter :authenticate, :only => [:edit,:update]
   
   def show
     @user = User.find(params[:id])#for params ctrl + p in textmate
@@ -43,4 +44,14 @@ class UsersController < ApplicationController
     render 'edit'
     end
   end
+  
+  private
+  
+  def authenticate
+    #flash[:notice] = "Please sign in to access this page."
+    #The line above is same as the notice below
+     deny_access unless signed_in?
+  end
+  
+
 end
