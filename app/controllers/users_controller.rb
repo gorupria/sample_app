@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   #is in 1003, timestamp: 5:00
-  before_filter :authenticate, :only => [:edit,:update]
+  before_filter :authenticate, :only => [:index, :edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
+  
+  def index
+    @users = User.all
+    @title = "All users"
+  end
   
   def show
     @user = User.find(params[:id])#for params ctrl + p in textmate
