@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   #is in 1003, timestamp: 5:00
   before_filter :authenticate, :only => [:edit,:update]
+  before_filter :correct_user, :only => [:edit, :update]
   
   def show
     @user = User.find(params[:id])#for params ctrl + p in textmate
@@ -28,6 +29,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    #raise request.inspect
     #is in 1002, timestamp:5:25 
     @user = User.find(params[:id])
     @title = "Edit user"
@@ -51,6 +53,12 @@ class UsersController < ApplicationController
     #flash[:notice] = "Please sign in to access this page."
     #The line above is same as the notice below
      deny_access unless signed_in?
+  end
+  
+  #is in 1003, timestamp: 29:00
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
   end
   
 
