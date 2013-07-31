@@ -96,6 +96,28 @@ a.signup_button{
 	border-radius: 10px;
 }
 
+/* Round corners text-field */
+.roundField{
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border: 1px solid #CCCCCC;
+	border-radius: 3px 3px 3px 3px;
+	color: #555555;
+	display: inline-block;
+	font-size: 13px;
+	height: 18px;
+	line-height: 18px;
+	margin-bottom: 9px;
+	padding: 4px;
+}
+
+.roundField:focus { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+
 /*Footer*/
 
 footer {
