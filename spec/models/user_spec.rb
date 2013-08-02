@@ -136,6 +136,7 @@ describe User do
       it "should return false if the passwords don't match " do
         @user.has_password?("invalid").should be_false 
       end
+    end
       
     describe "authenticate method" do
       
@@ -154,13 +155,31 @@ describe User do
       it "should return the user on email/password match " do
         User.authenticate(@attr[:email], @attr[:password]).should == @user
       end
-      
-      
+     end
     end
+    
+    describe "admin attribute" do
+      
+      before(:each) do
+        @user = User.create!(@attr)
+      end
+      
+      it "should respond to admin " do
+        @user.should respond_to(:admin)
+      end
+      
+      it "should not be an admin by default" do 
+        @user.should_not be_admin # is same as @user.admin?.should_not be_true
+      end
+      
+      it "should be convertable to an admin" do
+        #is in 1005, timestamp: 4:30
+        @user.toggle!(:admin)
+        @user.should be_admin
+      end
       
     end
     
-  end
 end
 # == Schema Information
 #
@@ -173,5 +192,6 @@ end
 #  updated_at         :datetime        not null
 #  encrypted_password :string(255)
 #  salt               :string(255)
+#  admin              :boolean         default(FALSE)
 #
 

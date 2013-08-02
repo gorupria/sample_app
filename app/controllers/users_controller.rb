@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   #is in 1003, timestamp: 5:00
-  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
   before_filter :correct_user, :only => [:edit, :update]
+  before_filter :admin_user,   :only => :destroy
   
   def index
     #@users = User.all
@@ -38,12 +39,12 @@ class UsersController < ApplicationController
   def edit
     #raise request.inspect
     #is in 1002, timestamp:5:25 
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @title = "Edit user"
   end
   
   def update
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     #is in 1002, timestamp: 28:00
     if @user.update_attributes(params[:user])
       #it worked
@@ -52,6 +53,11 @@ class UsersController < ApplicationController
     @title = "Edit user"
     render 'edit'
     end
+  end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to users_path, :flash => { :success => "User destroyed." }
   end
   
   private
@@ -66,6 +72,13 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
+  end
+  
+  def admin_user
+    user = User.find(params[:id])
+    #redirect_to(root_path) unless (current_user.admin? && !current_user?(user))
+    #line above is same as line below
+    redirect_to(root_path) if (!current_user.admin? || current_user?(user))
   end
   
 
