@@ -56,7 +56,8 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    User.find(params[:id]).destroy
+    #User.find(params[:id]).destroy
+    @user.destroy #is in 1102, timestamp: 24:00
     redirect_to users_path, :flash => { :success => "User destroyed." }
   end
   
@@ -75,10 +76,10 @@ class UsersController < ApplicationController
   end
   
   def admin_user
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
     #redirect_to(root_path) unless (current_user.admin? && !current_user?(user))
     #line above is same as line below
-    redirect_to(root_path) if (!current_user.admin? || current_user?(user))
+    redirect_to(root_path) if (!current_user.admin? || current_user?(@user))
   end
   
 

@@ -9,3 +9,10 @@ end
 Factory.sequence :email do |n|
   "person-#{n}@example.com"
 end
+
+#is in 1102, timestamp: 18:00
+Factory.define :micropost do |micropost|
+  micropost.content      "Foo bar"
+  micropost.association  :user
+end
+
