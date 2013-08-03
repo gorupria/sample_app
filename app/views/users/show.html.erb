@@ -7,11 +7,18 @@
 				<%= gravatar_for(@user) %>
 				<%= @user.name %>
 			</h1>
+			<% if @user.microposts.any? %>
+			  <table class="microposts" summary="User microposts">
+				<!--at 1103, timestamp: 5:00 -->
+				<%= render @microposts %>
+			  </table>
+			<%= will_paginate @microposts %><!-- will_paginate look for @users by default because it is in a users controller, so we need to pass the @microposts to tell it explicitly to paginate micropost model-->
+			<%end%>
 		</td>
 		<td class="sidebar round">
 			<strong>Name</strong><%= @user.name %><br/>
-			<strong>URL</strong><%= link_to user_path(@user.id),
-											@user %>
+			<strong>URL</strong><%= link_to user_path(@user.id), @user %>
+			<strong>Microposts </strong><%= @user.microposts.count %>
 		</td>
 	</tr>
 </table>
