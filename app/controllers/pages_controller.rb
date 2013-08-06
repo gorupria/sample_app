@@ -2,6 +2,11 @@ class PagesController < ApplicationController
   #learn inject in ruby
   def home
     @title = "Home"
+    #is in 1104, timestamp: 20:31
+    if signed_in?
+      @micropost = Micropost.new
+      @feed_items = current_user.feed.paginate(:page => params[:page])
+    end
   end
 
   def contact

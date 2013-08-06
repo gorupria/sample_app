@@ -2,6 +2,7 @@
 
 <%= form_for(@user) do |f| %>
   <!--at:1002, timestamp:12:00 -->
+  <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
   <div class="actions">
   	<%= f.submit "Update" %>

@@ -64,11 +64,12 @@ class UsersController < ApplicationController
   
   private
   
-  def authenticate
-    #flash[:notice] = "Please sign in to access this page."
-    #The line above is same as the notice below
-     deny_access unless signed_in?
-  end
+  #This method has been moved to session_helper file.
+  # def authenticate
+  #   #flash[:notice] = "Please sign in to access this page."
+  #   #The line above is same as the notice below
+  #    deny_access unless signed_in?
+  # end
   
   #is in 1003, timestamp: 29:00
   def correct_user

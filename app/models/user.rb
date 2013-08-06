@@ -36,6 +36,11 @@ class User < ActiveRecord::Base
     encrypted_password == encrypt(submitted_password)
   end
   
+  #is in 1104, timestamp: 33:00
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+  
   #is in 0703, timestamp: 20:00
   #everything inside this block is a class level method
   class << self

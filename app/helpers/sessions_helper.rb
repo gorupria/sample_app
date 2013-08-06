@@ -30,6 +30,12 @@ module SessionsHelper
     user == current_user
   end
   
+  def authenticate
+    #flash[:notice] = "Please sign in to access this page."
+    #The line above is same as the notice below
+     deny_access unless signed_in?
+  end
+  
   def deny_access
     #flash[:notice] = "Please sign in to access this page."
     #The line above is same as the notice below
