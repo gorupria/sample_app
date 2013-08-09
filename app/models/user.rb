@@ -46,7 +46,9 @@ class User < ActiveRecord::Base
   
   #is in 1104, timestamp: 33:00
   def feed
-    Micropost.where("user_id = ?", id)
+    #Micropost.where("user_id = ?", id)
+    #after refactoring
+    Micropost.from_users_followed_by(self)
   end
   
   def following?(followed)
